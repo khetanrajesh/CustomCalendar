@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000</color>
+    <color name="green">#92c842</color>
+    <color name="yellow">#f2d249</color>
+    <color name="blue">#008ae8</color>
+    <color name="red">#e74c3c</color>
+    <color name="light_gray_on_black">#aaaaaa</color>
+    <color name="dark_gray">#373738</color>
+    <color name="flat_turquoise">#1abc9c</color>
+    <color name="flat_carrot">#e67e22</color>
+    <color name="flat_sunflower">#f1c40f</color>
+    <color name="flat_alizarin">#e74c3c</color>
+    <color name="flat_amethyst">#9b59b6</color>
+    <color name="flat_peter_river">#3498db</color>
+    <color name="draft_workout">#f2d249</color>
+    <color name="active_workout">#92c842</color>
+    <color name="future_workout">#008ae8</color>
+    <color name="expired_workout">#e74c3c</color>
+    <color name="green_semi_trans">#285D0B</color>
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_rectangular_border">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30sp"
+        android:text="12"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_below="@+id/date"
+        android:layout_centerHorizontal="true"
+        android:text="Mon"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:id="@+id/day" />
+
+</RelativeLayout>

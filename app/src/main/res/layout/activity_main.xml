@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.rajesh.customcalendar.Calendar
+        android:id="@+id/customCalendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:calendarBackground="@android:color/tertiary_text_dark"
+        app:calendarSelectedColor="@android:color/holo_red_light"
+        app:calendarTextColor="@android:color/black"
+        app:monthYearBackgroundColor="@android:color/holo_red_dark"
+        app:expandedCalendarBackgroundColor="@android:color/holo_orange_dark"
+        app:expandedCalendarSelectedColor="@android:color/holo_purple"
+        app:expandedCalendarTextColor="@android:color/white"
+        app:identifier="customCalendar"
+        app:todayBackgroundColor="@android:color/holo_orange_dark"
+        app:todayTextColor="@android:color/holo_blue_light" />
+</LinearLayout>

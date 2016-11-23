@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="CalendarDateElement">
+        <attr name="startYear" format="integer" />
+        <attr name="endYear" format="integer" />
+        <attr name="identifier" format="string" />
+        <attr name="monthYearTextColor" format="color" />
+        <attr name="monthYearBackgroundColor" format="color" />
+        <attr name="todayTextColor" format="color" />
+        <attr name="todayBackgroundColor" format="color" />
+        <attr name="expandedCalendarBackgroundColor" format="color" />
+        <attr name="expandedCalendarTextColor" format="color" />
+        <attr name="expandedCalendarSelectedColor" format="color" />
+        <attr name="calendarBackground" format="color" />
+        <attr name="calendarTextColor" format="color" />
+        <attr name="calendarSelectedColor" format="color" />
+        <attr name="eventDotColor" format="color" />
+
+    </declare-styleable>
+
+</resources>
