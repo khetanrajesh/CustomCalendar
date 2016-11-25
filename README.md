@@ -1,2 +1,6 @@
 # CustomCalendar
-A custom calendar for android
+
+## Synopsis
+A customizable calendar for use in android project.
+
+## Code Example
