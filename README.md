@@ -2,7 +2,7 @@
 
 A customizable calendar android.
 
-![](/custom-calendar.gif.jpg?raw=true)
+![](/custom-calendar.gif?raw=true)
 
 ## Installation
 
