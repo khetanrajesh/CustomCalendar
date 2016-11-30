@@ -94,7 +94,7 @@ The simplest way to add calendar to your app:
  - setCalendarTextColor(int color)
  - setCalendarSelectedColor(int color)
  
-  Note: color here is the color resource id
+ Note: color here is the color resource id
   
   
 ### Questions?
