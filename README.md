@@ -21,6 +21,7 @@ The simplest way to add calendar to your app:
         />
  ```
  ### Using Attributes 
+ 
  ```
   <?xml version="1.0" encoding="utf-8"?>
   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -48,8 +49,8 @@ The simplest way to add calendar to your app:
         />
  </LinearLayout>
  ```
- ### Methods 
- 
+  ### Methods 
+
  - `getTodayDate()` - Returns today's date
  - `getSelected()` - Returns current selected date
  - `setEventDates(ArrayList<LocalDate>)` - Add events to a list of dates
@@ -81,7 +82,7 @@ The simplest way to add calendar to your app:
         });
    ```
  
- ####Settings calendar colors  
+ #### Setting calendar colors  
  - setEventDotColor(int color)
  - setMonthYearTextColor(int color)
  - setMonthYearBackgroundColor(int color)
