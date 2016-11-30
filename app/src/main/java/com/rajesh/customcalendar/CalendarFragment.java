@@ -33,11 +33,13 @@ public class CalendarFragment extends android.support.v4.app.Fragment implements
 
     int year;
     int month;
+    String identifier;
     ArrayList<String> array;
     GridView gridview;
     OnItemClickedListener mListener = sDummyCallbacks;
     String role;
     Calendar calendar;
+    int calendar_id;
 
     public CalendarFragment() {
 
@@ -51,13 +53,13 @@ public class CalendarFragment extends android.support.v4.app.Fragment implements
         public void OnItemClicked(int position);
     }
 
-    public static CalendarFragment newInstance(int year, int month, String role, Calendar calendar) {
+    public static CalendarFragment newInstance(int year, int month, String role, String identifier) {
         CalendarFragment myFragment = new CalendarFragment();
         Bundle args = new Bundle();
         args.putInt("year", year);
         args.putInt("month", month);
         args.putString("role", role);
-        args.putSerializable("calendar", calendar);
+        args.putString("identifier", identifier);
         myFragment.setArguments(args);
         return myFragment;
     }
@@ -67,10 +69,12 @@ public class CalendarFragment extends android.support.v4.app.Fragment implements
         super.onCreate(savedInstanceState);
 
         Resources res = getResources();
-        calendar = (Calendar) getArguments().getSerializable("calendar");
-        if (calendar == null) {
-            throw new ClassCastException("Calendar in " + getActivity().getLocalClassName() + " not found");
+        identifier =  getArguments().getString("identifier");
+        if (identifier == null) {
+            throw new ClassCastException("Calendar in " + getActivity().getLocalClassName() + " must have a identifier attribute");
         }
+        calendar_id = res.getIdentifier(identifier, "id", getContext().getPackageName());
+        calendar = (Calendar)getActivity().findViewById(calendar_id);
         year = getArguments().getInt("year", -1);
         month = getArguments().getInt("month", -1);
         role = getArguments().getString("role");

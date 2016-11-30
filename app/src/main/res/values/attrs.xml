@@ -11,6 +11,7 @@
 
 
     <declare-styleable name="CalendarDateElement">
+        <attr name="identifier" format="string" />
         <attr name="startYear" format="integer" />
         <attr name="endYear" format="integer" />
         <attr name="monthYearTextColor" format="color" />

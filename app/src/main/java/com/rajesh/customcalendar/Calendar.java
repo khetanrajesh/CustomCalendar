@@ -10,7 +10,6 @@ import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.os.Parcelable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -29,7 +28,6 @@ import org.joda.time.DurationFieldType;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,7 +35,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class Calendar extends LinearLayout implements CalendarFragment.OnItemClickedListener, Serializable {
+public class Calendar extends LinearLayout implements CalendarFragment.OnItemClickedListener {
 
     private List<CalendarFragment> fragments;
     private List<LocalDate> dates;
@@ -58,6 +56,7 @@ public class Calendar extends LinearLayout implements CalendarFragment.OnItemCli
     private LocalDate selected;
     public CalendarListener calendarListener = null;
     private ArrayList<LocalDate> eventDates;
+    String identifier;
 
 
     public interface CalendarListener {
@@ -228,6 +227,7 @@ public class Calendar extends LinearLayout implements CalendarFragment.OnItemCli
     public Calendar(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CalendarDateElement);
+        identifier = a.getString(R.styleable.CalendarDateElement_identifier);
         startYear = a.getInteger(R.styleable.CalendarDateElement_startYear, 1900);
         endYear = a.getInteger(R.styleable.CalendarDateElement_endYear, 2101);
         startDate = new LocalDate(startYear, 1, 1);
@@ -338,7 +338,7 @@ public class Calendar extends LinearLayout implements CalendarFragment.OnItemCli
         fragments = new ArrayList<>();
         for (int i = startYear; i <= endYear; i++) {
             for (int j = 1; j <= 12; j++) {
-                fragments.add(CalendarFragment.newInstance(i, j, "client", this));
+                fragments.add(CalendarFragment.newInstance(i, j, "client", identifier));
             }
         }
         pageAdapter = new CalendarPagerAdapter(activity.getSupportFragmentManager(), fragments);

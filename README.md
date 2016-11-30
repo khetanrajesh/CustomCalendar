@@ -16,10 +16,12 @@ The simplest way to add calendar to your app:
 ```
   <com.rajesh.customcalendar.Calendar
         android:id="@+id/customCalendar"
+        app:identifier="customCalendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
  ```
+- 'identifier' is a mandatory attribute , value of which should be the id of the view .
 
 ### Using Attributes 
  
@@ -45,6 +47,7 @@ The simplest way to add calendar to your app:
         app:calendarSelectedColor="@android:color/white"
         app:eventDotColor="@android:color/white"
         android:id="@+id/customCalendar"
+        app:identifier="customCalendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
