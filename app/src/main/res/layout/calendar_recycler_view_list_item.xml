@@ -14,7 +14,7 @@
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:background="?android:attr/selectableItemBackground"
         android:layout_marginLeft="15dp"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:layout_centerHorizontal="true"
         android:id="@+id/date" />
 
@@ -29,7 +29,7 @@
         android:layout_centerHorizontal="true"
         android:text="Mon"
         android:textSize="15sp"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:id="@+id/day" />
 
 </RelativeLayout>

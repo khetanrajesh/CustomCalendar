@@ -9,14 +9,5 @@
         android:id="@+id/customCalendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:calendarBackground="@android:color/tertiary_text_dark"
-        app:calendarSelectedColor="@android:color/holo_red_light"
-        app:calendarTextColor="@android:color/black"
-        app:monthYearBackgroundColor="@android:color/holo_red_dark"
-        app:expandedCalendarBackgroundColor="@android:color/holo_orange_dark"
-        app:expandedCalendarSelectedColor="@android:color/holo_purple"
-        app:expandedCalendarTextColor="@android:color/white"
-        app:identifier="customCalendar"
-        app:todayBackgroundColor="@android:color/holo_orange_dark"
-        app:todayTextColor="@android:color/holo_blue_light" />
+        />
 </LinearLayout>

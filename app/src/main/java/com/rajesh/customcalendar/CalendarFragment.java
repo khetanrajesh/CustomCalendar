@@ -33,7 +33,6 @@ public class CalendarFragment extends android.support.v4.app.Fragment implements
 
     int year;
     int month;
-    int calendar_id;
     ArrayList<String> array;
     GridView gridview;
     OnItemClickedListener mListener = sDummyCallbacks;
@@ -52,27 +51,13 @@ public class CalendarFragment extends android.support.v4.app.Fragment implements
         public void OnItemClicked(int position);
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        Activity a=null;
-//        if (context instanceof Activity){
-//            a=(Activity) context;
-//        }
-//        try {
-//            mListener = (OnItemClickedListener) a;
-//        } catch (ClassCastException e) {
-//            throw new ClassCastException(a.toString() + " must implement OnItemClickedListener");
-//        }
-//    }
-
-    public static CalendarFragment newInstance(int year, int month, String role, String identifier) {
+    public static CalendarFragment newInstance(int year, int month, String role, Calendar calendar) {
         CalendarFragment myFragment = new CalendarFragment();
         Bundle args = new Bundle();
         args.putInt("year", year);
         args.putInt("month", month);
         args.putString("role", role);
-        args.putString("identifier", identifier);
+        args.putSerializable("calendar", calendar);
         myFragment.setArguments(args);
         return myFragment;
     }
@@ -82,16 +67,14 @@ public class CalendarFragment extends android.support.v4.app.Fragment implements
         super.onCreate(savedInstanceState);
 
         Resources res = getResources();
-        String identifier = getArguments().getString("identifier");
-        if (identifier == null) {
-            throw new ClassCastException("Calendar in " + getActivity().getLocalClassName() + " must have identifier attribute");
+        calendar = (Calendar) getArguments().getSerializable("calendar");
+        if (calendar == null) {
+            throw new ClassCastException("Calendar in " + getActivity().getLocalClassName() + " not found");
         }
-        calendar_id = res.getIdentifier(identifier, "id", getContext().getPackageName());
         year = getArguments().getInt("year", -1);
         month = getArguments().getInt("month", -1);
         role = getArguments().getString("role");
-        mListener = (Calendar) getActivity().findViewById(calendar_id);
-        calendar = (Calendar) getActivity().findViewById(calendar_id);
+        mListener = calendar;
 
     }
 
@@ -159,7 +142,7 @@ public class CalendarFragment extends android.support.v4.app.Fragment implements
         for (int j = i; j < getDaysInMonth(year, month) + i; j++) {
             array.set(j, value++ + "");
         }
-        CalendarMonthGridViewAdapter aa = new CalendarMonthGridViewAdapter(v.getContext(), R.layout.calendar_list_item, array, year, month, (Calendar) getActivity().findViewById(calendar_id));
+        CalendarMonthGridViewAdapter aa = new CalendarMonthGridViewAdapter(v.getContext(), R.layout.calendar_list_item, array, year, month, calendar);
         gridview.setAdapter(aa);
         gridview.setOnItemClickListener(this);
         return v;

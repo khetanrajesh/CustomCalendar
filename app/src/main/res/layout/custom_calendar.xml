@@ -9,11 +9,12 @@
         android:id="@+id/monthYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
-        android:drawableTint="@color/green"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/white"
+        android:drawableTint="@android:color/holo_green_dark"
+        android:padding="5dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white"
         android:textStyle="bold" />
 
 
@@ -23,12 +24,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:background="@drawable/background_rectangular_border"
-        android:padding="10dp"
+        android:padding="5dp"
         android:text="Today"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textStyle="bold" />
 
 
@@ -37,14 +38,15 @@
         android:layout_width="wrap_content"
         android:layout_height="300dp"
         android:layout_below="@+id/monthYear"
-        android:layout_margin="10dp" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/viewpager"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:scrollbars="horizontal" />
 
 

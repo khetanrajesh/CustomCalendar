@@ -63,7 +63,7 @@ public class CalendarMonthGridViewAdapter extends BaseAdapter {
         String s = list.get(position);
         int a;
 
-        holder.dot.setVisibility(View.VISIBLE);
+        holder.dot.setVisibility(View.INVISIBLE);
         holder.dot.setTextColor(calendar.getEventDotColor());
         try {
             a = Integer.parseInt(s);

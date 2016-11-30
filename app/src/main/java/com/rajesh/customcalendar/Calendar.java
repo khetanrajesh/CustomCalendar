@@ -10,6 +10,7 @@ import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.os.Parcelable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -19,7 +20,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,6 +29,7 @@ import org.joda.time.DurationFieldType;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,12 +37,12 @@ import java.util.Date;
 import java.util.List;
 
 
-public class Calendar extends LinearLayout implements CalendarFragment.OnItemClickedListener {
+public class Calendar extends LinearLayout implements CalendarFragment.OnItemClickedListener, Serializable {
 
     private List<CalendarFragment> fragments;
     private List<LocalDate> dates;
-    private int startYear = 1900;
-    private int endYear = 2101;
+    private int startYear;
+    private int endYear;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private LinearLayoutManager mLayoutManager;
@@ -52,7 +53,6 @@ public class Calendar extends LinearLayout implements CalendarFragment.OnItemCli
     boolean changeDetected = false;
     boolean scrollPager = true;
     boolean clicked = false;
-    String identifier;
     private int monthYearTextColor, monthYearBackgroundColor, todayTextColor, todayBackgroundColor, expandedCalendarBackgroundColor,
             expandedCalendarTextColor, expandedCalendarSelectedColor, calendarBackground, calendarTextColor, calendarSelectedColor, eventDotColor;
     private LocalDate selected;
@@ -67,7 +67,7 @@ public class Calendar extends LinearLayout implements CalendarFragment.OnItemCli
 
         public void onDateChange(LocalDate date);
 
-        public LocalDate onTodayClick();
+        public void onTodayClick();
     }
 
 
@@ -206,7 +206,11 @@ public class Calendar extends LinearLayout implements CalendarFragment.OnItemCli
     }
 
     public void setEventDates(ArrayList<LocalDate> eventDates) {
-        this.eventDates = eventDates;
+        if (eventDates != null) {
+            this.eventDates = eventDates;
+        } else {
+            this.eventDates.clear();
+        }
     }
 
     private static CalendarFragment.OnItemClickedListener callback = new CalendarFragment.OnItemClickedListener() {
@@ -226,21 +230,20 @@ public class Calendar extends LinearLayout implements CalendarFragment.OnItemCli
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CalendarDateElement);
         startYear = a.getInteger(R.styleable.CalendarDateElement_startYear, 1900);
         endYear = a.getInteger(R.styleable.CalendarDateElement_endYear, 2101);
-        identifier = a.getString(R.styleable.CalendarDateElement_identifier);
         startDate = new LocalDate(startYear, 1, 1);
         endDate = new LocalDate(endYear, 12, 31);
         todayDate = new LocalDate();
         monthYearTextColor = a.getColor(R.styleable.CalendarDateElement_monthYearTextColor, ContextCompat.getColor(context, android.R.color.white));
-        monthYearBackgroundColor = a.getColor(R.styleable.CalendarDateElement_monthYearBackgroundColor, ContextCompat.getColor(context, android.R.color.transparent));
+        monthYearBackgroundColor = a.getColor(R.styleable.CalendarDateElement_monthYearBackgroundColor, ContextCompat.getColor(context, R.color.fuchsia_pink));
         todayTextColor = a.getColor(R.styleable.CalendarDateElement_todayTextColor, ContextCompat.getColor(context, android.R.color.white));
-        todayBackgroundColor = a.getColor(R.styleable.CalendarDateElement_todayBackgroundColor, ContextCompat.getColor(context, android.R.color.holo_green_dark));
+        todayBackgroundColor = a.getColor(R.styleable.CalendarDateElement_todayBackgroundColor, ContextCompat.getColor(context, R.color.de_york));
         expandedCalendarBackgroundColor = a.getColor(R.styleable.CalendarDateElement_expandedCalendarBackgroundColor, ContextCompat.getColor(context, android.R.color.holo_blue_light));
         expandedCalendarTextColor = a.getColor(R.styleable.CalendarDateElement_expandedCalendarTextColor, ContextCompat.getColor(context, android.R.color.white));
-        expandedCalendarSelectedColor = a.getColor(R.styleable.CalendarDateElement_expandedCalendarSelectedColor, ContextCompat.getColor(context, android.R.color.holo_green_dark));
+        expandedCalendarSelectedColor = a.getColor(R.styleable.CalendarDateElement_expandedCalendarSelectedColor, ContextCompat.getColor(context, R.color.flat_sunflower));
         calendarBackground = a.getColor(R.styleable.CalendarDateElement_calendarBackground, ContextCompat.getColor(context, android.R.color.holo_green_dark));
         calendarTextColor = a.getColor(R.styleable.CalendarDateElement_calendarTextColor, ContextCompat.getColor(context, android.R.color.white));
-        calendarSelectedColor = a.getColor(R.styleable.CalendarDateElement_calendarSelectedColor, ContextCompat.getColor(context, android.R.color.holo_blue_light));
-        eventDotColor = a.getColor(R.styleable.CalendarDateElement_eventDotColor, ContextCompat.getColor(context, android.R.color.holo_blue_light));
+        calendarSelectedColor = a.getColor(R.styleable.CalendarDateElement_calendarSelectedColor, ContextCompat.getColor(context, R.color.flat_sunflower));
+        eventDotColor = a.getColor(R.styleable.CalendarDateElement_eventDotColor, ContextCompat.getColor(context, R.color.cornflower_lilac));
         initControl(context);
     }
 
@@ -253,8 +256,9 @@ public class Calendar extends LinearLayout implements CalendarFragment.OnItemCli
         LayoutInflater inflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        inflater.inflate(R.layout.gomotive_calendar, this);
+        inflater.inflate(R.layout.custom_calendar, this);
 
+        eventDates = new ArrayList<>();
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         pager = (ViewPager) findViewById(R.id.viewpager);
         tv_month_year = (TextView) findViewById(R.id.monthYear);
@@ -264,6 +268,11 @@ public class Calendar extends LinearLayout implements CalendarFragment.OnItemCli
         mRecyclerView.setBackgroundColor(expandedCalendarBackgroundColor);
         tv_today.setTextColor(todayTextColor);
         tv_today.setBackgroundColor(todayBackgroundColor);
+        if ((todayDate.isBefore(endDate) && todayDate.isAfter(startDate) || todayDate.isEqual(startDate) || todayDate.isEqual(endDate))) {
+            tv_today.setVisibility(VISIBLE);
+        }else{
+            tv_today.setVisibility(INVISIBLE);
+        }
         setUpPager(context);
         setUpRecyclerView(context);
         setUpListeners(context);
@@ -303,12 +312,12 @@ public class Calendar extends LinearLayout implements CalendarFragment.OnItemCli
                     pager.setCurrentItem(Months.monthsBetween(startDate, todayDate).getMonths());
                 }
                 LocalDate t = new LocalDate();
-                if (selected!=null && !selected.isEqual(t)) {
+                if (selected != null && !selected.isEqual(t)) {
                     selected = t;
                     if (calendarListener != null) {
                         calendarListener.onDateChange(selected);
                     }
-                }else if(selected == null){
+                } else if (selected == null) {
                     selected = t;
                 }
                 if (calendarListener != null) {
@@ -329,7 +338,7 @@ public class Calendar extends LinearLayout implements CalendarFragment.OnItemCli
         fragments = new ArrayList<>();
         for (int i = startYear; i <= endYear; i++) {
             for (int j = 1; j <= 12; j++) {
-                fragments.add(CalendarFragment.newInstance(i, j, "client", identifier));
+                fragments.add(CalendarFragment.newInstance(i, j, "client", this));
             }
         }
         pageAdapter = new CalendarPagerAdapter(activity.getSupportFragmentManager(), fragments);
@@ -362,6 +371,8 @@ public class Calendar extends LinearLayout implements CalendarFragment.OnItemCli
                                           }
                                       }
         );
+        pager.setVisibility(View.GONE);
+        tv_month_year.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_down_black_24dp, 0);
     }
 
 

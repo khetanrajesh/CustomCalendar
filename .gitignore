@@ -6,3 +6,6 @@
 .DS_Store
 /build
 /captures
+/private_key_sender.asc
+/public_key_sender.asc
+.idea
