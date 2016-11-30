@@ -1,6 +1,6 @@
 # CustomCalendar
 
-A customizable calendar android.
+A customizable calendar for android.
 
 ![](/custom-calendar.gif?raw=true)
 
