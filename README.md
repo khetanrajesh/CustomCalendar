@@ -81,8 +81,7 @@ The simplest way to add calendar to your app:
         });
    ```
  
- ####Settings calendar colors 
-  
+ ####Settings calendar colors  
  - setEventDotColor(int color)
  - setMonthYearTextColor(int color)
  - setMonthYearBackgroundColor(int color)
@@ -94,6 +93,8 @@ The simplest way to add calendar to your app:
  - setCalendarBackground(int color)
  - setCalendarTextColor(int color)
  - setCalendarSelectedColor(int color)
+ 
+  Note: color here is the color resource id
   
   
 ### Questions?
