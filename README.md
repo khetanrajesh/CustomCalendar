@@ -20,7 +20,8 @@ The simplest way to add calendar to your app:
         android:layout_height="wrap_content"
         />
  ```
- ### Using Attributes 
+
+### Using Attributes 
  
  ```
   <?xml version="1.0" encoding="utf-8"?>
@@ -49,7 +50,7 @@ The simplest way to add calendar to your app:
         />
  </LinearLayout>
  ```
-  ### Methods 
+### Methods 
 
  - `getTodayDate()` - Returns today's date
  - `getSelected()` - Returns current selected date
@@ -60,7 +61,7 @@ The simplest way to add calendar to your app:
  - `deleteEvent(LocalDate)` - DeleteEvent from a date
  - `deleteEvent(LocalDate)` - DeleteEvent from a date
  
-  #### Listen to Calendar Events  
+#### Listen to Calendar Events  
   ```
    calendarInstance.setCalendarListener(new Calendar.CalendarListener() {
             @Override
@@ -82,7 +83,7 @@ The simplest way to add calendar to your app:
         });
    ```
  
- #### Setting calendar colors  
+#### Setting calendar colors  
  - setEventDotColor(int color)
  - setMonthYearTextColor(int color)
  - setMonthYearBackgroundColor(int color)
